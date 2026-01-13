@@ -8,8 +8,6 @@ import static edu.wpi.first.units.Units.Meters;
 import com.techhounds.houndutil.houndauto.Reflector;
 import com.techhounds.houndutil.houndlib.BallConstants;
 import com.techhounds.houndutil.houndlib.Utils;
-import com.techhounds.houndutil.houndlog.annotations.LoggedObject;
-
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;

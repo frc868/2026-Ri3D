@@ -95,8 +95,6 @@ public class ShooterHood extends SubsystemBase implements BaseSingleJointedArm<H
     @Tunable
     private double targetAngle;
 
-    private PositionTracker positionTracker;
-
     public ShooterHood(PositionTracker positionTracker) {
         TalonFXConfiguration motorConfig = new TalonFXConfiguration();
         motorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;

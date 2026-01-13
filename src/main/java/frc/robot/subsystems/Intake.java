@@ -355,7 +355,7 @@ public class Intake extends SubsystemBase implements BaseSingleJointedArm<Intake
     @Override
     public Command runRollersCommand() {
         return Commands.startEnd(
-                () -> rollerMotor.setControl(rollerVoltageRequest.withOutput(9)),
+                () -> rollerMotor.setControl(rollerVoltageRequest.withOutput(11)),
                 () -> rollerMotor.setControl(rollerVoltageRequest.withOutput(0)))
                 .withName("intake.runRollers");
     }
@@ -363,7 +363,7 @@ public class Intake extends SubsystemBase implements BaseSingleJointedArm<Intake
     @Override
     public Command reverseRollersCommand() {
         return Commands.startEnd(
-                () -> rollerMotor.setControl(rollerVoltageRequest.withOutput(-9)),
+                () -> rollerMotor.setControl(rollerVoltageRequest.withOutput(-11)),
                 () -> rollerMotor.setControl(rollerVoltageRequest.withOutput(0)))
                 .withName("intake.runRollers");
     }
@@ -377,7 +377,7 @@ public class Intake extends SubsystemBase implements BaseSingleJointedArm<Intake
 
     public Command jogUpDownCommand() {
         return Commands.sequence(
-                moveToPositionCommand(() -> IntakePosition.GROUND).withTimeout(0.5),
+                moveToPositionCommand(() -> IntakePosition.BOTTOM).withTimeout(0.5),
                 moveToPositionCommand(() -> IntakePosition.JOG).withTimeout(0.5)).repeatedly();
     }
 

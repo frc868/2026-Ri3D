@@ -5,7 +5,6 @@ import com.techhounds.houndutil.houndlib.oi.CommandVirpilJoystick;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.Constants.Intake.IntakePosition;
 import frc.robot.Constants.ShooterHood.HoodPosition;
 import frc.robot.subsystems.Drivetrain;
@@ -25,15 +24,17 @@ public class Controls {
         new Trigger(() -> (Math.abs(joystick.getTwist()) > 0.05))
                 .whileTrue(drivetrain.disableControlledRotateCommand());
 
-        // joystick.triggerSoftPress().whileTrue(drivetrain.targetPoseCommand(() ->
-        // FieldConstants.Hub.CENTER)
-        // .alongWith(superstructure.targetHubEasyCommand()));
-        joystick.triggerSoftPress()
+        joystick.triggerSoftPress().and(joystick.flipTriggerIn().negate())
                 .whileTrue(drivetrain
                         .targetPoseCommand(() -> superstructure.shotCalculator.getCurrentEffectiveTargetPose())
                         .alongWith(superstructure.targetHubSotmCommand()));
+        joystick.triggerSoftPress().and(joystick.flipTriggerIn())
+                .whileTrue(drivetrain.controlledRotateCommand(() -> Math.PI)
+                        .alongWith(superstructure.passCommand()));
         joystick.triggerHardPress().whileTrue(
-                Commands.parallel(superstructure.hopper.runRollersCommand()));
+                Commands.parallel(superstructure.hopper.runRollersCommand(),
+                        // superstructure.intake.jogUpDownCommand(),
+                        superstructure.intake.runRollersCommand()));
 
         joystick.centerTopHatDown().whileTrue(superstructure.intake.moveToPositionCommand(() -> IntakePosition.GROUND));
         joystick.centerTopHatUp().whileTrue(superstructure.intake.moveToPositionCommand(() -> IntakePosition.STOW));
@@ -57,10 +58,6 @@ public class Controls {
 
     }
 
-    public static void configureTestingControls(int port, Drivetrain drivetrain) {
-        CommandXboxController controller = new CommandXboxController(port);
-    }
-
     public static void configureDrivingTestingControls(int port, Drivetrain drivetrain, Superstructure superstructure,
             ShotCalculator shotCalculator) {
         CommandXboxController controller = new CommandXboxController(port);
@@ -69,7 +66,8 @@ public class Controls {
                 superstructure.shooterHood.resetPositionCommand()).ignoringDisable(true));
         controller.povDown().onTrue(GlobalStates.INITIALIZED.enableCommand().ignoringDisable(true));
 
-        controller.x().whileTrue(superstructure.intake.jogUpDownCommand());
+        controller.y().whileTrue(superstructure.intake.moveToPositionCommand(() -> IntakePosition.JOG));
+        controller.a().whileTrue(superstructure.intake.moveToPositionCommand(() -> IntakePosition.BOTTOM));
 
         // controller.x().whileTrue(superstructure.shooter.sysIdQuasistatic(Direction.kForward));
         // controller.y().whileTrue(superstructure.shooter.sysIdQuasistatic(Direction.kReverse));

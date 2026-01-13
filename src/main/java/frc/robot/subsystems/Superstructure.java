@@ -19,13 +19,12 @@ import frc.robot.FieldConstants;
 import static frc.robot.Constants.Shooter.BALL_TRANSFORM_LEFT;
 import static frc.robot.Constants.Shooter.BALL_TRANSFORM_RIGHT;
 import static frc.robot.Constants.Shooter.DISTANCE_TO_RPS;
-import static frc.robot.Constants.Shooter.DISTANCE_TO_SHOT_SPEED;
 import static frc.robot.Constants.ShooterHood.DISTANCE_TO_HOOD_ANGLE;
+import static frc.robot.Constants.ShooterHood.SHOT_ANGLE_TO_HOOD_ANGLE;
 import java.util.function.Supplier;
 
 @LoggedObject
 public class Superstructure extends SubsystemBase {
-    private final Drivetrain drivetrain;
     public final Shooter shooter;
     public final ShooterHood shooterHood;
     public final Hopper hopper;
@@ -49,7 +48,6 @@ public class Superstructure extends SubsystemBase {
     public Superstructure(Drivetrain drivetrain, Shooter shooter, ShooterHood shooterHood, Hopper hopper, Intake intake,
             LEDs leds,
             BallSimulator ballSimulator, ShotCalculator shotCalculator) {
-        this.drivetrain = drivetrain;
         this.shooter = shooter;
         this.shooterHood = shooterHood;
         this.hopper = hopper;
@@ -92,19 +90,13 @@ public class Superstructure extends SubsystemBase {
                 .andThen(useRequirement());
     }
 
-    // public Command shootCommand(Drivetrain drivetrain) {
-    // return runOnce(() -> {
-    // InterceptSolution sol = shotCalculator.getInterceptSolution();
-    // shootBall(drivetrain.getPose(), drivetrain.getChassisSpeeds(),
-    // sol.launchSpeed(), sol.launchPitchRad());
-
-    // // Pose2d dtPose = drivetrain.getPose();
-    // // shootBall(new Pose2d(dtPose.getX(), dtPose.getY(), new
-    // // Rotation2d(sol.requiredYaw())),
-    // // drivetrain.getChassisSpeeds(), sol.launchSpeed(), sol.launchPitchRad());
-
-    // });
-    // }
+    public Command passCommand() {
+        return Commands.parallel(
+                shooter.spinAtVelocityCommand(() -> 70.0).asProxy(),
+                shooterHood.moveToArbitraryPositionCommand(
+                        () -> SHOT_ANGLE_TO_HOOD_ANGLE.get(Units.degreesToRadians(40.0))).asProxy())
+                .andThen(useRequirement());
+    }
 
     public Command testShotCommand(Drivetrain drivetrain) {
         return runOnce(() -> {

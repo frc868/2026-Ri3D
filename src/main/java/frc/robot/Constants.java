@@ -196,9 +196,9 @@ public class Constants {
         public static final double kP = 0.1;
         public static final double kI = 0;
         public static final double kD = 0;
-        public static final double kS = 0.15;
-        public static final double kV = 0.17769;
-        public static final double kA = 0.022959;
+        public static final double kS = 0.19353;
+        public static final double kV = 0.1669;
+        public static final double kA = 0.014113;
 
         public static final double MAX_VELOCITY_ROTATIONS_PER_SECOND = 50; // TODO
         public static final double MAX_ACCELERATION_ROTATIONS_PER_SECOND_SQUARED = 50; // TODO
@@ -214,9 +214,15 @@ public class Constants {
 
         public static final InterpolatingDoubleTreeMap DISTANCE_TO_SHOT_SPEED = new InterpolatingDoubleTreeMap();
         static {
-            DISTANCE_TO_SHOT_SPEED.put(0.0, 7.0);
-            DISTANCE_TO_SHOT_SPEED.put(5.0, 8.25);
-            DISTANCE_TO_SHOT_SPEED.put(10.0, 10.0);
+            DISTANCE_TO_SHOT_SPEED.put(2.07, 7.0);
+            // DISTANCE_TO_SHOT_SPEED.put(2.41, 41.0);
+            // DISTANCE_TO_SHOT_SPEED.put(3.20, 45.0);
+            // DISTANCE_TO_SHOT_SPEED.put(3.87, 49.0);
+            // DISTANCE_TO_SHOT_SPEED.put(4.57, 52.0);
+            DISTANCE_TO_SHOT_SPEED.put(4.92, 9.0);
+            // DISTANCE_TO_SHOT_SPEED.put(0.0, 7.0);
+            // DISTANCE_TO_SHOT_SPEED.put(5.0, 8.25);
+            // DISTANCE_TO_SHOT_SPEED.put(10.0, 10.0);
         }
 
         public static final InterpolatingDoubleTreeMap SHOT_SPEED_TO_RPS = new InterpolatingDoubleTreeMap();
@@ -252,7 +258,7 @@ public class Constants {
         public static final int MOTOR_ID = 16;
 
         public static final DCMotor MOTOR_GEARBOX_REPR = DCMotor.getKrakenX60Foc(1);
-        public static final double GEARING = 8;
+        public static final double GEARING = 40;
         public static final double LENGTH_METERS = 0.2032;
         public static final double MASS_KG = 0.90718474;
         public static final double MOMENT_OF_INERTIA_KG_METERS_SQUARED = SingleJointedArmSim.estimateMOI(
@@ -265,17 +271,17 @@ public class Constants {
         public static final double MIN_ANGLE_RADIANS = 1.410;
         public static final double MAX_ANGLE_RADIANS = 2.878;
 
-        public static final double CURRENT_LIMIT = 80;
+        public static final double CURRENT_LIMIT = 100;
 
         public static final double TOLERANCE = 0.01;
 
-        public static final double kP = 120.0;
+        public static final double kP = 100.0;
         public static final double kI = 0.0;
         public static final double kD = 1.0;
-        public static final double kS = RobotBase.isReal() ? 0.1 : 0.0;
-        public static final double kG = 0.28;
-        public static final double kV = 1.00;
-        public static final double kA = 0.01;
+        public static final double kS = RobotBase.isReal() ? 0.1 / 5.0 : 0.0;
+        public static final double kG = 0.28 / 5.0;
+        public static final double kV = 4.98;
+        public static final double kA = 0.01 / 5.0;
 
         public static final InterpolatingDoubleTreeMap SHOT_ANGLE_TO_HOOD_ANGLE = new InterpolatingDoubleTreeMap();
         static {
@@ -306,8 +312,8 @@ public class Constants {
     public static final class Intake {
         public static enum IntakePosition {
             BOTTOM(Radians.of(-0.3)),
-            GROUND(Radians.of(-0.05)),
-            JOG(Radians.of(0.8)),
+            GROUND(Radians.of(-0.15)),
+            JOG(Radians.of(0.5)),
             MINISTOW(Radians.of(1.12469017)),
             STOW(Radians.of(1.58));
 
@@ -330,12 +336,12 @@ public class Constants {
                 LENGTH_METERS,
                 MASS_KG);
 
-        public static final double MIN_ANGLE_RADIANS = -0.058; // TODO
+        public static final double MIN_ANGLE_RADIANS = -0.3; // TODO
         public static final double MAX_ANGLE_RADIANS = 1.58; // TODO
 
         public static final double ENCODER_ROTATIONS_TO_RADIANS = 2 * Math.PI / GEARING; // TODO
         public static final int ARM_CURRENT_LIMIT = 30; // TODO
-        public static final int ROLLER_CURRENT_LIMIT = 65; // TODO
+        public static final int ROLLER_CURRENT_LIMIT = 75; // TODO
 
         // TODO
         public static final double kP = 40;
@@ -348,7 +354,7 @@ public class Constants {
         public static final double TOLERANCE = 0.05;
 
         public static final double MAX_VELOCITY_ROTATIONS_PER_SECOND = 3;
-        public static final double MAX_ACCELERATION_ROTATIONS_PER_SECOND_SQUARED = 15;
+        public static final double MAX_ACCELERATION_ROTATIONS_PER_SECOND_SQUARED = 30;
 
         // TODO
         public static final Pose3d BASE_COMPONENT_POSE = new Pose3d(-0.19, 0, 0.299,
@@ -367,7 +373,7 @@ public class Constants {
     public static final class Hopper {
         public static final int MOTOR_ID = 19;
         public static final DCMotor MOTOR_GEARBOX_REPR = Utils.getKrakenX44(1);
-        public static final double CURRENT_LIMIT = 60;
+        public static final double CURRENT_LIMIT = 80;
     }
 
     public static final class LEDs {

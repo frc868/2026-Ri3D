@@ -4,10 +4,7 @@
 
 package frc.robot;
 
-import java.io.IOException;
 import java.util.function.Supplier;
-
-import org.json.simple.parser.ParseException;
 
 import com.ctre.phoenix6.SignalLogger;
 import com.techhounds.houndutil.houndauto.AutoManager;
@@ -182,12 +179,6 @@ public class RobotContainer {
     }
 
     private void configureAuto() {
-        try {
-            AutoManager.getInstance().addRoutine(Autos.wheelRadiusCharacterization(drivetrain));
-            AutoManager.getInstance().addRoutine(Autos.FDC(drivetrain));
-        } catch (IOException | ParseException e) {
-            throw new RuntimeException("Could not create trajectories.");
-        }
-
+        AutoManager.getInstance().addRoutine(Autos.wheelRadiusCharacterization(drivetrain));
     }
 }

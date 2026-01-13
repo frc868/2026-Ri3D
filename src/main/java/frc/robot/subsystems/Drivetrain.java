@@ -19,7 +19,6 @@ import com.pathplanner.lib.path.PathConstraints;
 import com.pathplanner.lib.path.PathPlannerPath;
 import com.pathplanner.lib.util.DriveFeedforwards;
 import com.techhounds.houndutil.houndauto.AutoManager;
-import com.techhounds.houndutil.houndlib.BallSimulator;
 import com.techhounds.houndutil.houndlib.ChassisAccelerations;
 import com.techhounds.houndutil.houndlib.MotorHoldMode;
 import com.techhounds.houndutil.houndlib.PositionTracker;
@@ -208,8 +207,6 @@ public class Drivetrain extends SubsystemBase implements BaseSwerveDrive {
     @Log
     private boolean initialized = RobotBase.isSimulation();
 
-    private final PositionTracker positionTracker;
-
     /** Initializes the drivetrain. */
     public Drivetrain(PositionTracker positionTracker) {
         poseEstimator = new SwerveDrivePoseEstimator(
@@ -327,8 +324,6 @@ public class Drivetrain extends SubsystemBase implements BaseSwerveDrive {
 
         odometryThread = new OdometryThread();
         odometryThread.start();
-
-        this.positionTracker = positionTracker;
     }
 
     /**

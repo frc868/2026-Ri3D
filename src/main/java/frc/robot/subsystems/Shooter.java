@@ -96,7 +96,7 @@ public class Shooter extends SubsystemBase implements BaseShooter {
         primaryMotor = new TalonFX(PRIMARY_MOTOR_ID, CAN_BUS_NAME);
         primaryMotor.getConfigurator().apply(shooterMotorConfig);
 
-        secondaryMotor = new TalonFX(PRIMARY_MOTOR_ID, CAN_BUS_NAME);
+        secondaryMotor = new TalonFX(SECONDARY_MOTOR_ID, CAN_BUS_NAME);
         secondaryMotor.getConfigurator().apply(shooterMotorConfig);
 
         // tertiaryMotor = new TalonFX(PRIMARY_MOTOR_ID, CAN_BUS_NAME);
