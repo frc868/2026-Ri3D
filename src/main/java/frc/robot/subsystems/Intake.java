@@ -222,8 +222,8 @@ public class Intake extends SubsystemBase implements BaseSingleJointedArm<Intake
 
     @Override
     public void resetPosition() {
-        leftArmMotor.setPosition(IntakePosition.BOTTOM.value);
-        rightArmMotor.setPosition(IntakePosition.BOTTOM.value);
+        leftArmMotor.setPosition(IntakePosition.STOW.value);
+        rightArmMotor.setPosition(IntakePosition.STOW.value);
         initialized = true;
     }
 

@@ -33,7 +33,7 @@ public class Controls {
                         .targetPoseCommand(() -> superstructure.shotCalculator.getCurrentEffectiveTargetPose())
                         .alongWith(superstructure.targetHubSotmCommand()));
         joystick.triggerHardPress().whileTrue(
-                Commands.parallel(superstructure.hopper.runRollersCommand(), superstructure.intake.jogUpDownCommand()));
+                Commands.parallel(superstructure.hopper.runRollersCommand()));
 
         joystick.centerTopHatDown().whileTrue(superstructure.intake.moveToPositionCommand(() -> IntakePosition.GROUND));
         joystick.centerTopHatUp().whileTrue(superstructure.intake.moveToPositionCommand(() -> IntakePosition.STOW));
