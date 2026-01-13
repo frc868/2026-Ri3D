@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -62,23 +63,34 @@ public class Vision extends SubsystemBase {
     private Supplier<Rotation2d> headingSupplier = null;
     /** A simulation of the vision system. */
     private final VisionSystemSim visionSim = new VisionSystemSim("main");
+    private AprilTagFieldLayout tagLayout;
 
     @Log(groups = "cameras")
-    private final AprilTagPhotonCamera houndeye01 = new AprilTagPhotonCamera("FrontLeft",
-            ROBOT_TO_CAMS[0], CAMERA_CONSTANTS, 0.2, 0.1, AprilTagFields.k2025ReefscapeWelded);
+    private final AprilTagPhotonCamera houndeye01;
     @Log(groups = "cameras")
-    private final AprilTagPhotonCamera houndeye02 = new AprilTagPhotonCamera("FrontRight",
-            ROBOT_TO_CAMS[1], CAMERA_CONSTANTS, 0.2, 0.1, AprilTagFields.k2025ReefscapeWelded);
+    private final AprilTagPhotonCamera houndeye02;
 
-    private final AprilTagPhotonCamera[] cameras = new AprilTagPhotonCamera[] {
-            houndeye01, houndeye02 };
+    private final AprilTagPhotonCamera[] cameras;
 
     private final Pose3d[] latestUsedPoses = new Pose3d[] { Pose3d.kZero, Pose3d.kZero };
     private final Pose3d[] latestUsedTrigPoses = new Pose3d[] { Pose3d.kZero, Pose3d.kZero };
 
-    private final AprilTagFieldLayout tagLayout = AprilTagFieldLayout.loadField(AprilTagFields.k2025ReefscapeWelded);
-
     public Vision() {
+        try {
+            tagLayout = new AprilTagFieldLayout((RobotBase.isReal() ? "/home/lvuser/deploy/" : "src/main/deploy/")
+                    + "2026-rebuilt-welded-blue.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+            tagLayout = AprilTagFieldLayout.loadField(AprilTagFields.k2025ReefscapeWelded);
+        }
+
+        houndeye01 = new AprilTagPhotonCamera("FrontLeft",
+                ROBOT_TO_CAMS[0], CAMERA_CONSTANTS, 0.2, 0.1, tagLayout);
+
+        houndeye02 = new AprilTagPhotonCamera("FrontRight",
+                ROBOT_TO_CAMS[1], CAMERA_CONSTANTS, 0.2, 0.1, tagLayout);
+        cameras = new AprilTagPhotonCamera[] { houndeye01, houndeye02 };
+
         if (RobotBase.isSimulation()) {
             visionSim.addAprilTags(tagLayout);
             for (AprilTagPhotonCamera camera : cameras) {
@@ -100,7 +112,7 @@ public class Vision extends SubsystemBase {
      */
     @Override
     public void simulationPeriodic() {
-        visionSim.update(simPoseSupplier.get());
+        // visionSim.update(simPoseSupplier.get());
     }
 
     /**
@@ -125,6 +137,9 @@ public class Vision extends SubsystemBase {
 
             latestUsedPoses[i] = new Pose3d(-100, -100, -100, new Rotation3d());
             latestUsedTrigPoses[i] = new Pose3d(-100, -100, -100, new Rotation3d());
+
+            // System.out.println(robotPoses.size());
+            // System.out.println(trigPoses.size());
 
             for (Pair<EstimatedRobotPose, Matrix<N3, N1>> item : robotPoses) {
                 EstimatedRobotPose estPose = item.getFirst();

@@ -1,0 +1,45 @@
+{
+    "name": "2026 Field",
+    "isFTC": false,
+    "coordinateSystem": "wall-blue",
+    "rotations": [
+        {
+            "axis": "x",
+            "degrees": 90
+        },
+        {
+            "axis": "z",
+            "degrees": 180
+        }
+    ],
+    "widthInches": 651.22,
+    "heightInches": 317.69,
+    "defaultOrigin": "blue",
+    "driverStations": [
+        [
+            0,
+            0
+        ],
+        [
+            0,
+            0
+        ],
+        [
+            0,
+            0
+        ],
+        [
+            0,
+            0
+        ],
+        [
+            0,
+            0
+        ],
+        [
+            0,
+            0
+        ]
+    ],
+    "gamePieces": []
+}

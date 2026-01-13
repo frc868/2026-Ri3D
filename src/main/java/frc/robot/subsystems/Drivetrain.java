@@ -19,6 +19,7 @@ import com.pathplanner.lib.path.PathConstraints;
 import com.pathplanner.lib.path.PathPlannerPath;
 import com.pathplanner.lib.util.DriveFeedforwards;
 import com.techhounds.houndutil.houndauto.AutoManager;
+import com.techhounds.houndutil.houndlib.BallSimulator;
 import com.techhounds.houndutil.houndlib.ChassisAccelerations;
 import com.techhounds.houndutil.houndlib.MotorHoldMode;
 import com.techhounds.houndutil.houndlib.PositionTracker;
@@ -328,7 +329,6 @@ public class Drivetrain extends SubsystemBase implements BaseSwerveDrive {
         odometryThread.start();
 
         this.positionTracker = positionTracker;
-
     }
 
     /**
@@ -812,6 +812,7 @@ public class Drivetrain extends SubsystemBase implements BaseSwerveDrive {
 
             if (isControlledRotationEnabled) {
                 thetaSpeed = rotationController.calculate(getRotation().getRadians());
+                // + rotationController.getSetpoint().velocity;
             }
 
             drive(new ChassisSpeeds(xSpeed, ySpeed, thetaSpeed), DriveMode.FIELD_ORIENTED);
@@ -984,19 +985,19 @@ public class Drivetrain extends SubsystemBase implements BaseSwerveDrive {
         field.getObject("precisePose").setPose(precisePoseEstimator.getEstimatedPosition());
     }
 
-    public Command sysIdDriveQuasistatic(SysIdRoutine.Direction direction) {
+    public Command sysIdDriveQuasistaticCommand(SysIdRoutine.Direction direction) {
         return sysIdDrive.quasistatic(direction).withName("drivetrain.sysIdDriveQuasistatic");
     }
 
-    public Command sysIdDriveDynamic(SysIdRoutine.Direction direction) {
+    public Command sysIdDriveDynamicCommand(SysIdRoutine.Direction direction) {
         return sysIdDrive.dynamic(direction).withName("drivetrain.sysIdDriveQuasistatic");
     }
 
-    public Command sysIdSteerQuasistatic(SysIdRoutine.Direction direction) {
+    public Command sysIdSteerQuasistaticCommand(SysIdRoutine.Direction direction) {
         return sysIdSteer.quasistatic(direction).withName("drivetrain.sysIdDriveQuasistatic");
     }
 
-    public Command sysIdSteerDynamic(SysIdRoutine.Direction direction) {
+    public Command sysIdSteerDynamicCommand(SysIdRoutine.Direction direction) {
         return sysIdSteer.dynamic(direction).withName("drivetrain.sysIdDriveQuasistatic");
     }
 

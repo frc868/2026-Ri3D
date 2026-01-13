@@ -1,0 +1,45 @@
+close up: 75 deg, 6 m/s
+middle to bars: 65 deg, 6.5 m/s
+at bars: 60, 7 m/s
+
+
+y, x
+1596, 960
+1392, 1086
+
+
+
+SHOTS
+
+OLD
+2.07m
+59 deg shot angle
+38 shooter rps
+2.878 hood rotatios
+
+2.41m
+57 deg shot angle
+41 shooter rps
+2.853 hood rotations
+
+3.20m
+55 deg shot angle
+45 shooter rps
+2.764 hood rotations
+
+3.87m
+50 deg shot angle
+49 shooter rps
+2.764 hood rotations
+
+
+NEW
+4.57m
+50 deg shot angle
+52 shooter rps
+2.764 hood rotations
+
+4.92m
+45 deg shot angle
+57 shooter rps
+2.694 hood rotations

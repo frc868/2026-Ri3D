@@ -38,46 +38,10 @@ public class LEDs extends SubsystemBase {
     private List<LEDState> activeLEDStates = new ArrayList<>();
 
     public enum LEDState {
-        CALIB(
-                solid(Color.kRed, LEDSection.ELEVATOR_L1_RIGHT),
-                solid(Color.kGreen, LEDSection.ELEVATOR_L2_RIGHT),
-                solid(Color.kBlue, LEDSection.ELEVATOR_L3_RIGHT),
-                solid(Color.kPurple, LEDSection.ELEVATOR_L4_RIGHT),
-                solid(Color.kYellow, LEDSection.ELEVATOR_CENTER),
-                solid(Color.kRed, LEDSection.ELEVATOR_L1_LEFT),
-                solid(Color.kGreen, LEDSection.ELEVATOR_L2_LEFT),
-                solid(Color.kBlue, LEDSection.ELEVATOR_L3_LEFT),
-                solid(Color.kPurple, LEDSection.ELEVATOR_L4_LEFT)),
-        ALGAE_DETECTOR(),
-
-        MANUAL_DRIVING_OVERRIDE(
-                breathe(Color.kRed, 0.5, 0, 255, LEDSection.ELEVATOR_LEFT),
-                breathe(Color.kRed, 0.5, 0, 255, LEDSection.ELEVATOR_RIGHT)),
-        LOCK_TO_LINE_OVERRIDE(
-                breathe(Color.kYellow, 0.5, 0, 255, LEDSection.ELEVATOR_LEFT),
-                breathe(Color.kYellow, 0.5, 0, 255, LEDSection.ELEVATOR_RIGHT)),
-
         HOUNDBRIAN_CLICK(solid(Color.kYellow, LEDSection.ALL)),
 
         DRIVETRAIN_UNINITIALIZED(
-                breathe(Color.kRed, 3, 0, 255, LEDSection.ELEVATOR_CENTER)),
-
-        ELEVATOR_UNINITIALIZED(
-                breathe(Color.kRed, 3, 0, 255, LEDSection.ELEVATOR_L4_LEFT),
-                breathe(Color.kRed, 3, 0, 255, LEDSection.ELEVATOR_L4_RIGHT)),
-
-        ARM_UNINITIALIZED(
-                breathe(Color.kRed, 3, 0, 255, LEDSection.ELEVATOR_L3_LEFT),
-                breathe(Color.kRed, 3, 0, 255, LEDSection.ELEVATOR_L3_RIGHT)),
-
-        INTAKE_UNINITIALIZED(
-                breathe(Color.kRed, 3, 0, 255, LEDSection.ELEVATOR_L2_LEFT),
-                breathe(Color.kRed, 3, 0, 255, LEDSection.ELEVATOR_L2_RIGHT)),
-
-        CLIMBER_UNINITIALIZED(
-                breathe(Color.kRed, 3, 0, 255, LEDSection.ELEVATOR_L1_LEFT),
-                breathe(Color.kRed, 3, 0, 255, LEDSection.ELEVATOR_L1_RIGHT)),
-
+                breathe(Color.kRed, 3, 0, 255, LEDSection.ALL)),
         INITIALIZATION_BLACK_BACKGROUND(solid(Color.kBlack, LEDSection.ALL)),
 
         INITIALIZED_CONFIRM(breathe(Color.kGreen, 2, 0, 255, LEDSection.ALL)),
@@ -85,38 +49,6 @@ public class LEDs extends SubsystemBase {
         READY_TO_SCORE(solid(Color.kGreen, LEDSection.ALL)),
 
         READY_FOR_CORAL(solid(Color.kOrange, LEDSection.ALL)),
-
-        HAS_CORAL(flash(Color.kWhite, 0.1, LEDSection.ELEVATOR_CENTER)),
-
-        HAS_ALGAE(flash(Color.kGreen, 0.1, LEDSection.ELEVATOR_CENTER)),
-
-        L1(
-                solid(Color.kBlue, LEDSection.ELEVATOR_L1_RIGHT),
-                solid(Color.kBlue, LEDSection.ELEVATOR_L1_LEFT)),
-
-        L2(
-                solid(Color.kBlue, LEDSection.ELEVATOR_L2_RIGHT),
-                solid(Color.kBlue, LEDSection.ELEVATOR_L2_LEFT)),
-
-        L3(
-                solid(Color.kBlue, LEDSection.ELEVATOR_L3_RIGHT),
-                solid(Color.kBlue, LEDSection.ELEVATOR_L3_LEFT)),
-
-        L4(
-                solid(Color.kBlue, LEDSection.ELEVATOR_L4_RIGHT),
-                solid(Color.kBlue, LEDSection.ELEVATOR_L4_LEFT)),
-
-        FIRE(
-                fire2012Palette(0.8, 0.4,
-                        List.of(Color.kBlack, Color.kDarkBlue, Color.kBlue, Color.kGreen,
-                                Color.kLightGreen,
-                                Color.kWhite),
-                        LEDSection.ELEVATOR_LEFT),
-                fire2012Palette(0.8, 0.4,
-                        List.of(Color.kBlack, Color.kDarkBlue, Color.kBlue, Color.kGreen,
-                                Color.kLightGreen,
-                                Color.kWhite),
-                        LEDSection.ELEVATOR_RIGHT)),
 
         GOLD_WAVE(wave(new Color("#FBBF05"), 25, 10, 50, 150, LEDSection.ALL));
 

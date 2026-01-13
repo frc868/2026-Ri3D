@@ -1,0 +1,9 @@
+{
+    "name": "Ball",
+    "disableSimplification": false,
+    "position": [
+        0,
+        0,
+        0
+    ]
+}
