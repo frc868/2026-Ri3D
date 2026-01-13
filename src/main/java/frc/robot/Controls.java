@@ -69,10 +69,12 @@ public class Controls {
                 superstructure.shooterHood.resetPositionCommand()).ignoringDisable(true));
         controller.povDown().onTrue(GlobalStates.INITIALIZED.enableCommand().ignoringDisable(true));
 
-        controller.x().whileTrue(superstructure.shooter.sysIdQuasistatic(Direction.kForward));
-        controller.y().whileTrue(superstructure.shooter.sysIdQuasistatic(Direction.kReverse));
-        controller.a().whileTrue(superstructure.shooter.sysIdDynamic(Direction.kForward));
-        controller.b().whileTrue(superstructure.shooter.sysIdDynamic(Direction.kReverse));
+        controller.x().whileTrue(superstructure.intake.jogUpDownCommand());
+
+        // controller.x().whileTrue(superstructure.shooter.sysIdQuasistatic(Direction.kForward));
+        // controller.y().whileTrue(superstructure.shooter.sysIdQuasistatic(Direction.kReverse));
+        // controller.a().whileTrue(superstructure.shooter.sysIdDynamic(Direction.kForward));
+        // controller.b().whileTrue(superstructure.shooter.sysIdDynamic(Direction.kReverse));
 
         // controller.x().onTrue(drivetrain.resetGyroCommand());
 

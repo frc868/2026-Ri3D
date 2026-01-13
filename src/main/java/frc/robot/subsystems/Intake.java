@@ -378,9 +378,7 @@ public class Intake extends SubsystemBase implements BaseSingleJointedArm<Intake
     public Command jogUpDownCommand() {
         return Commands.sequence(
                 moveToPositionCommand(() -> IntakePosition.GROUND).withTimeout(0.5),
-                Commands.waitSeconds(0.5),
-                moveToPositionCommand(() -> IntakePosition.JOG).withTimeout(0.5),
-                Commands.waitSeconds(0.5)).repeatedly();
+                moveToPositionCommand(() -> IntakePosition.JOG).withTimeout(0.5)).repeatedly();
     }
 
 }
