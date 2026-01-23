@@ -19,7 +19,7 @@ import com.techhounds.houndutil.houndlib.EqualsUtil;
 import com.techhounds.houndutil.houndlib.PositionTracker;
 import com.techhounds.houndutil.houndlib.Utils;
 import com.techhounds.houndutil.houndlib.subsystems.BaseIntake;
-import com.techhounds.houndutil.houndlib.subsystems.BaseSingleJointedArm;
+import com.techhounds.houndutil.houndlib.subsystems.BasePivot;
 import com.techhounds.houndutil.houndlog.SignalManager;
 import com.techhounds.houndutil.houndlog.annotations.Log;
 import com.techhounds.houndutil.houndlog.annotations.LoggedObject;
@@ -53,7 +53,7 @@ import static edu.wpi.first.units.Units.Second;
 import static edu.wpi.first.units.Units.Volts;
 
 @LoggedObject
-public class Intake extends SubsystemBase implements BaseSingleJointedArm<IntakePosition>, BaseIntake {
+public class Intake extends SubsystemBase implements BasePivot<IntakePosition>, BaseIntake {
     @Log
     private final TalonFX leftArmMotor;
     @Log

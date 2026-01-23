@@ -23,7 +23,7 @@ import com.ctre.phoenix6.sim.TalonFXSimState;
 import com.techhounds.houndutil.houndlib.EqualsUtil;
 import com.techhounds.houndutil.houndlib.PositionTracker;
 import com.techhounds.houndutil.houndlib.Utils;
-import com.techhounds.houndutil.houndlib.subsystems.BaseSingleJointedArm;
+import com.techhounds.houndutil.houndlib.subsystems.BasePivot;
 import com.techhounds.houndutil.houndlog.SignalManager;
 import com.techhounds.houndutil.houndlog.annotations.Log;
 import com.techhounds.houndutil.houndlog.annotations.LoggedObject;
@@ -55,7 +55,7 @@ import static frc.robot.Constants.CAN_BUS_NAME;
 import java.util.function.Supplier;
 
 @LoggedObject
-public class ShooterHood extends SubsystemBase implements BaseSingleJointedArm<HoodPosition> {
+public class ShooterHood extends SubsystemBase implements BasePivot<HoodPosition> {
     @Log
     private final TalonFX motor;
 

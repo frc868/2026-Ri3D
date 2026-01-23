@@ -11,7 +11,7 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 import com.ctre.phoenix6.sim.TalonFXSimState;
 import com.techhounds.houndutil.houndlib.EqualsUtil;
-import com.techhounds.houndutil.houndlib.subsystems.BaseShooter;
+import com.techhounds.houndutil.houndlib.subsystems.BaseFlywheel;
 import com.techhounds.houndutil.houndlog.annotations.Log;
 import com.techhounds.houndutil.houndlog.annotations.LoggedObject;
 import com.techhounds.houndutil.houndlog.annotations.Tunable;
@@ -39,7 +39,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 
 @LoggedObject
-public class Shooter extends SubsystemBase implements BaseShooter {
+public class Shooter extends SubsystemBase implements BaseFlywheel {
     @Log
     private final TalonFX primaryMotor;
     @Log

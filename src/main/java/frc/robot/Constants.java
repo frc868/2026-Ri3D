@@ -14,8 +14,22 @@ import com.pathplanner.lib.config.RobotConfig;
 import com.techhounds.houndutil.houndlib.Utils;
 import com.techhounds.houndutil.houndlib.AprilTagPhotonCamera.PhotonCameraConstants;
 import com.techhounds.houndutil.houndlib.leds.BaseLEDSection;
-import com.techhounds.houndutil.houndlib.swerve.CoaxialSwerveModule.SwerveConstants;
+import com.techhounds.houndutil.houndlib.swerve.KrakenCoaxialSwerveModule;
+import com.techhounds.houndutil.houndlib.swerve.KrakenCoaxialSwerveModule.SwerveConstants;
 import com.techhounds.houndutil.houndlog.loggers.MetadataLogger.MetadataRecord;
+import com.techhounds.houndutil.houndlog.FaultLogger;
+import com.techhounds.houndutil.houndlog.LogAnnotationHandler;
+import com.techhounds.houndutil.houndlog.LoggingManager;
+import com.techhounds.houndutil.houndlog.LogProfiles;
+import com.techhounds.houndutil.houndlog.LogType;
+import com.techhounds.houndutil.houndlog.SignalManager;
+import com.techhounds.houndutil.houndlog.loggers.MetadataLogger;
+import com.techhounds.houndutil.houndlog.loggers.
+import com.techhounds.houndutil.houndlog.loggers.
+
+
+
+
 
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.VecBuilder;
