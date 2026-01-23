@@ -105,7 +105,7 @@ public class Shooter extends SubsystemBase implements BaseFlywheel {
         // quaternaryMotor = new TalonFX(PRIMARY_MOTOR_ID, CAN_BUS_NAME);
         // quaternaryMotor.getConfigurator().apply(shooterMotorConfig);
 
-        secondaryMotor.setControl(new Follower(primaryMotor.getDeviceID(), true));
+        //secondaryMotor.setControl(new Follower(primaryMotor.getDeviceID(), true));
         // tertiaryMotor.setControl(new Follower(primaryMotor.getDeviceID(), false));
         // quaternaryMotor.setControl(new Follower(primaryMotor.getDeviceID(), false));
 

@@ -97,7 +97,7 @@ public class RobotContainer {
         configureTriggers();
 
         LoggingManager.getInstance().registerObject(this);
-        LoggingManager.getInstance().registerMetadata(Constants.BUILD_METADATA);
+        //LoggingManager.getInstance().registerMetadata(Constants.BUILD_METADATA);
         DataLogManager.logNetworkTables(true);
         DriverStation.startDataLog(DataLogManager.getLog());
         DataLogManager.start();

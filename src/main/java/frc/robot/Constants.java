@@ -24,12 +24,6 @@ import com.techhounds.houndutil.houndlog.LogProfiles;
 import com.techhounds.houndutil.houndlog.LogType;
 import com.techhounds.houndutil.houndlog.SignalManager;
 import com.techhounds.houndutil.houndlog.loggers.MetadataLogger;
-import com.techhounds.houndutil.houndlog.loggers.
-import com.techhounds.houndutil.houndlog.loggers.
-
-
-
-
 
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.VecBuilder;
@@ -56,9 +50,9 @@ import frc.robot.subsystems.LEDs.LEDState;
 public class Constants {
     public static final double LOOP_TIME = 0.020; // 20ms
 
-    public static final MetadataRecord BUILD_METADATA = new MetadataRecord(
-            BuildConstants.MAVEN_NAME, BuildConstants.GIT_SHA, BuildConstants.GIT_DATE,
-            BuildConstants.GIT_BRANCH, BuildConstants.BUILD_DATE, BuildConstants.DIRTY);
+    // public static final MetadataRecord BUILD_METADATA = new MetadataRecord(
+    //         BuildConstants.MAVEN_NAME, BuildConstants.GIT_SHA, BuildConstants.GIT_DATE,
+    //         BuildConstants.GIT_BRANCH, BuildConstants.BUILD_DATE, BuildConstants.DIRTY);
 
     public static final String CAN_BUS_NAME = "canivore";
 
