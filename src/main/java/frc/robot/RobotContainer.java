@@ -74,7 +74,7 @@ public class RobotContainer {
     CommandScheduler scheduler = CommandScheduler.getInstance();
 
     @Log(groups = "timing")
-    private Supplier<Double> odometryLoopTimeMs = () -> drivetrain.getOdometryLoopTime();
+    private Supplier<Double> odometryLoopTimeMs = () -> drivetrain.swerve.getOdometryLoopTime();
 
     @Log
     private final Supplier<Double> matchTimer = DriverStation::getMatchTime;
@@ -88,7 +88,7 @@ public class RobotContainer {
     private final Pose3d componentPose = new Pose3d(1, 1, 1, Rotation3d.kZero);
 
     @Log
-    private final Supplier<Double> distance = () -> drivetrain.getPose().getTranslation()
+    private final Supplier<Double> distance = () -> drivetrain.swerve.getPose().getTranslation()
             .getDistance(target.getTranslation().toTranslation2d());
 
     public RobotContainer() {
@@ -107,12 +107,12 @@ public class RobotContainer {
             DriverStation.silenceJoystickConnectionWarning(true);
         }
 
-        vision.setSimPoseSupplier(drivetrain::getSimPose);
-        vision.setPoseEstimator(drivetrain.getPoseEstimator());
-        vision.setChassisSpeedsSupplier(drivetrain::getChassisSpeeds);
-        vision.setHeadingSupplier(drivetrain::getRotation);
-        vision.setVisionMeasurementConsumer(drivetrain::addVisionMeasurement);
-        vision.setPreciseVisionMeasurementConsumer(drivetrain::addPreciseVisionMeasurement);
+        vision.setSimPoseSupplier(drivetrain.swerve::getSimPose);
+        vision.setPoseEstimator(drivetrain.swerve.getPoseEstimator());
+        vision.setChassisSpeedsSupplier(drivetrain.swerve::getChassisSpeeds);
+        vision.setHeadingSupplier(drivetrain.swerve::getRotation);
+        vision.setVisionMeasurementConsumer(drivetrain.swerve::addVisionMeasurement);
+        vision.setPreciseVisionMeasurementConsumer(drivetrain.swerve::addPreciseVisionMeasurement);
     }
 
     private void configureBindings() {
@@ -133,7 +133,7 @@ public class RobotContainer {
 
     private void configureTriggers() {
         new Trigger(() -> {
-            return drivetrain.getInitialized()
+            return drivetrain.swerve.getInitialized()
                     && shooterHood.getInitialized()
                     && intake.getInitialized();
         }).onTrue(GlobalStates.INITIALIZED.enableCommand());

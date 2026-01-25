@@ -11,20 +11,9 @@ import static edu.wpi.first.units.Units.KilogramSquareMeters;
 import java.util.List;
 import com.pathplanner.lib.config.ModuleConfig;
 import com.pathplanner.lib.config.RobotConfig;
-import com.techhounds.houndutil.houndlib.Utils;
 import com.techhounds.houndutil.houndlib.AprilTagPhotonCamera.PhotonCameraConstants;
 import com.techhounds.houndutil.houndlib.leds.BaseLEDSection;
-import com.techhounds.houndutil.houndlib.swerve.KrakenCoaxialSwerveModule;
 import com.techhounds.houndutil.houndlib.swerve.KrakenCoaxialSwerveModule.SwerveConstants;
-import com.techhounds.houndutil.houndlog.loggers.MetadataLogger.MetadataRecord;
-import com.techhounds.houndutil.houndlog.FaultLogger;
-import com.techhounds.houndutil.houndlog.LogAnnotationHandler;
-import com.techhounds.houndutil.houndlog.LoggingManager;
-import com.techhounds.houndutil.houndlog.LogProfiles;
-import com.techhounds.houndutil.houndlog.LogType;
-import com.techhounds.houndutil.houndlog.SignalManager;
-import com.techhounds.houndutil.houndlog.loggers.MetadataLogger;
-
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose3d;
@@ -131,7 +120,7 @@ public class Constants {
             SWERVE_CONSTANTS.DRIVE_CURRENT_LIMIT = 85;
             SWERVE_CONSTANTS.STEER_CURRENT_LIMIT = 30;
             SWERVE_CONSTANTS.DRIVE_GEARBOX_REPR = DCMotor.getKrakenX60(1);
-            SWERVE_CONSTANTS.STEER_GEARBOX_REPR = Utils.getKrakenX44(1);
+            SWERVE_CONSTANTS.STEER_GEARBOX_REPR = DCMotor.getKrakenX44(1);
             SWERVE_CONSTANTS.DRIVE_MOI = 0.01;
             SWERVE_CONSTANTS.STEER_MOI = 0.025;
         }
@@ -380,7 +369,7 @@ public class Constants {
 
     public static final class Hopper {
         public static final int MOTOR_ID = 19;
-        public static final DCMotor MOTOR_GEARBOX_REPR = Utils.getKrakenX44(1);
+        public static final DCMotor MOTOR_GEARBOX_REPR = DCMotor.getKrakenX44(1);
         public static final double CURRENT_LIMIT = 80;
     }
 

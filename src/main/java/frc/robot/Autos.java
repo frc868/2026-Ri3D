@@ -25,9 +25,9 @@ public class Autos {
                 drivetrain.teleopDriveCommand(() -> 0, () -> 0, () -> 0.5).alongWith(
                         Commands.waitSeconds(1).andThen(
                                 Commands.runOnce(() -> {
-                                    initialGyroRotation.value = drivetrain.getRawYaw().in(Radians);
+                                    initialGyroRotation.value = drivetrain.swerve.getRawYaw().in(Radians);
                                     initialWheelPosition.value = Rotations
-                                            .of(drivetrain.getModulePositions()[0].distanceMeters
+                                            .of(drivetrain.swerve.getModulePositions()[0].distanceMeters
                                                     / Constants.Drivetrain.SWERVE_CONSTANTS.WHEEL_CIRCUMFERENCE)
                                             .in(Radians);
                                 })))
@@ -39,8 +39,8 @@ public class Autos {
                     System.out.println("######## Wheel Characterization Results ########");
                     System.out.println("################################################");
 
-                    double gyroDelta = drivetrain.getRawYaw().in(Radians) - initialGyroRotation.value;
-                    double wheelPositionDelta = Math.abs(Rotations.of(drivetrain.getModulePositions()[0].distanceMeters
+                    double gyroDelta = drivetrain.swerve.getRawYaw().in(Radians) - initialGyroRotation.value;
+                    double wheelPositionDelta = Math.abs(Rotations.of(drivetrain.swerve.getModulePositions()[0].distanceMeters
                             / Constants.Drivetrain.SWERVE_CONSTANTS.WHEEL_CIRCUMFERENCE).in(Radians)
                             - initialWheelPosition.value);
 

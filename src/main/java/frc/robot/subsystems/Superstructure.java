@@ -56,9 +56,9 @@ public class Superstructure extends SubsystemBase {
 
         this.ballSimulator = ballSimulator;
         this.shotCalculator = shotCalculator;
-        distanceSupplier = () -> drivetrain.getPose().getTranslation()
+        distanceSupplier = () -> drivetrain.swerve.getPose().getTranslation()
                 .getDistance(FieldConstants.Hub.CENTER.getTranslation().toTranslation2d());
-        distanceSotmSupplier = () -> drivetrain.getPose().getTranslation()
+        distanceSotmSupplier = () -> drivetrain.swerve.getPose().getTranslation()
                 .getDistance(shotCalculator.getCurrentEffectiveTargetPose().getTranslation().toTranslation2d());
     }
 
@@ -100,8 +100,8 @@ public class Superstructure extends SubsystemBase {
 
     public Command testShotCommand(Drivetrain drivetrain) {
         return runOnce(() -> {
-            Pose2d drivetrainPose = drivetrain.getPose();
-            ChassisSpeeds drivetrainSpeeds = drivetrain.getFieldRelativeSpeeds();
+            Pose2d drivetrainPose = drivetrain.swerve.getPose();
+            ChassisSpeeds drivetrainSpeeds = drivetrain.swerve.getFieldRelativeSpeeds();
 
             shootBall(drivetrainPose, drivetrainSpeeds, testShotVelocity, Units.degreesToRadians(testLaunchPitch));
         });

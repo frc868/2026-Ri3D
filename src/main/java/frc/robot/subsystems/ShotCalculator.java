@@ -44,14 +44,14 @@ public class ShotCalculator extends SubsystemBase {
 
     @Override
     public void periodic() {
-        Pose2d drivetrainPose = drivetrain.getPose();
+        Pose2d drivetrainPose = drivetrain.swerve.getPose();
 
         targetDistance = drivetrainPose.getTranslation().getDistance(targetLocation.toPose2d().getTranslation());
         targetSpeedRps = DISTANCE_TO_SHOT_SPEED.get(targetDistance);
 
         Pose3d shooterPose = new Pose3d(drivetrainPose).plus(BALL_TRANSFORM_CENTER);
 
-        ChassisSpeeds drivetrainSpeeds = drivetrain.getFieldRelativeSpeeds();
+        ChassisSpeeds drivetrainSpeeds = drivetrain.swerve.getFieldRelativeSpeeds();
         ChassisAccelerations drivetrainAccelerations = drivetrain.getFieldRelativeAccelerations();
 
         currentInterceptSolution = ShootOnTheFlyCalculator.solveShootOnTheFly(shooterPose, targetLocation,
